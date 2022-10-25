@@ -1,4 +1,5 @@
-﻿using Raylib_CsLo;
+﻿using System.Numerics;
+using Raylib_CsLo;
 using static Raylib_CsLo.RayMath;
 
 namespace PixelEngine;
@@ -130,23 +131,16 @@ public class Fluid
           }
         }
       }
-      
-      
-      
-      
-      /*var amtX = Raylib.GetMouseX();
-      var amtY = Raylib.GetMouseY();
-      
-      addVelocity(amtX / scale, amtY / scale, amtX * 2, amtY * 2);*/
     }
+    
 
     public void addVelocity(int x, int y, float amountX, float amountY) {
       int index = IX(x, y);
       this.Vx[index] += amountX;
       this.Vy[index] += amountY;
     }
-  
-    
+
+
     void diffuse (int b, float[] x, float[] x0, float diff, float dt) {
       float a = dt * diff * (size - 2) * (size - 2);
       lin_solve(b, x, x0, a, 1 + 4 * a);

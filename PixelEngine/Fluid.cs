@@ -93,20 +93,11 @@ public class Fluid
 
     public int IX(int x, int y)
     {
-        var X = Clamp(x, 0, size - 1);
-        var Y = Clamp(y, 0, size - 1);
-        return X + Y * size;
+
+      var X = Normalize(x, 0, size - 1);;
+      var Y = Normalize(y, 0, size - 1);
+      return (int) (X + Y * size);
     }
-    
-    float Clamp( float value, float min, float max )
-    {
-        return (value < min) ? min : (value > max) ? max : value;
-    }
-    int Clamp( int value, int min, int max )
-    {
-      return (value < min) ? min : (value > max) ? max : value;
-    }
-    
 
     public void addDensity(int x, int y, float amount) {
       int index = IX(x, y);

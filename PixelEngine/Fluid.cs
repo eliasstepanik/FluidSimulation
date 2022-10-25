@@ -112,11 +112,11 @@ public class Fluid
       this.density[index] += amount;
     }
     
-    public void reduceDensity(int x, int y, float amount) {
+    public void reduceDensity(int x, int y, float amount, int rSize) {
 
-      for (int i = -10; i < 10; i++)
+      for (int i = -rSize; i < rSize; i++)
       {
-        for (int j = -10; j < 10; j++)
+        for (int j = -rSize; j < rSize; j++)
         {
           int index = IX(x + i, y + j);
           

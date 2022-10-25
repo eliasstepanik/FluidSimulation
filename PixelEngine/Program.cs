@@ -15,6 +15,8 @@ var N = 64;
 var Scale = 10;
 var Iter = 10;
 float t = 0;
+int whiteholes = 4;
+int blackholes = 1;
 
 Fluid fluid;
 
@@ -23,9 +25,31 @@ InitWindow(N * Scale, N * Scale, "Raylib_CsLo");
 SetTargetFPS(60);
 Random rd = new Random();
 
-
 var pMouseX = GetMouseX();
 var pMouseY = GetMouseY();
+
+var whiteholesA = new WhiteHole[whiteholes];
+var blackholesA = new BlackHole[blackholes];
+
+for (int i = 0; i < whiteholes; i++)
+{
+    whiteholesA[i] = new WhiteHole(
+        new Vector2(rd.Next(3, N - 3), rd.Next(3, N - 3)),
+        new Vector2(rd.Next(50, 100), rd.Next(50, 100)),
+        rd.Next(0, 100),
+        rd.Next(0, 100)
+    );
+}
+
+for (int i = 0; i < blackholes; i++)
+{
+    blackholesA[i] = new BlackHole(
+        new Vector2(rd.Next(3, N - 3), rd.Next(3, N - 3)),
+        rd.Next(0, 3),
+        rd.Next(0,200)
+    );
+}
+
 
 
 while (!WindowShouldClose())
@@ -58,7 +82,7 @@ while (!WindowShouldClose())
         fluid.addDensity((int)GetMouseX() / Scale, (int)GetMouseY() / Scale, 100);
     else if (IsMouseButtonDown(MouseButton.MOUSE_BUTTON_RIGHT))
     {
-        fluid.reduceDensity((int)GetMouseX() / Scale, (int)GetMouseY() / Scale, 100);
+        fluid.reduceDensity((int)GetMouseX() / Scale, (int)GetMouseY() / Scale, 100, 5);
         
         
         //TODO: Suction for Density Reduction
@@ -67,11 +91,25 @@ while (!WindowShouldClose())
         
         fluid.addVelocity((int)GetMouseX() / Scale, (int)GetMouseY() / Scale, amtX, amtY);*/
     }
+
+
+
+
+    foreach (var hole in blackholesA)
+    {
+        hole.Spawn(fluid);
+    }
+    
+    foreach (var hole in whiteholesA)
+    {
+        hole.Spawn(fluid);
+    }
     
     
+    /*fluid.addDensity(N - 3 , 3,  100);
+    fluid.addVelocity(N - 3 , 3,  -10f, 0);*/
     
-    fluid.addDensity(N - 3, 3,  200);
-    fluid.addVelocity(N - 3 , 3,  -10f, -10f);
+    
         
 
     /*if (GetMouseX() != pMouseX || GetMouseY() != pMouseY)

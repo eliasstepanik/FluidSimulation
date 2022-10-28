@@ -77,7 +77,8 @@ public class Fluid
       }
     }
     
-    public void renderD() {
+    public void renderD()
+    {
       for (int i = 0; i < size; i++) {
         for (int j = 0; j < size; j++) {
           int x = i * scale;
@@ -211,11 +212,11 @@ public class Fluid
 
           if (x < 0.5f) x = 0.5f; 
           if (x > Nfloat + 0.5f) x = Nfloat + 0.5f; 
-          i0 = RayMath.floorf(x); 
+          i0 = floorf(x); 
           i1 = i0 + 1.0f;
           if (y < 0.5f) y = 0.5f; 
           if (y > Nfloat + 0.5f) y = Nfloat + 0.5f; 
-          j0 = RayMath.floorf(y);
+          j0 = floorf(y);
           j1 = j0 + 1.0f; 
 
           s1 = x - i0; 

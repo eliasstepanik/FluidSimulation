@@ -1,0 +1,62 @@
+﻿{
+  "Densities":[
+    {
+      "x":64,
+      "y":64,
+      "amount":200
+    }
+  ],
+  "Velocities":[
+    {
+      "x":32,
+      "y":64,
+      "amountX":0.1,
+      "amountY":-0.1
+    },
+    {
+      "x":96,
+      "y":64,
+      "amountX":-0.1,
+      "amountY":0.1
+    },
+    {
+      "x":64,
+      "y":32,
+      "amountX":0.1,
+      "amountY":0.1
+    },
+    {
+      "x":64,
+      "y":96,
+      "amountX":-0.1,
+      "amountY":-0.1
+    },
+
+
+
+    {
+      "x":64,
+      "y":64,
+      "amountX":0.1,
+      "amountY":-0.1
+    },
+    {
+      "x":64,
+      "y":64,
+      "amountX":-0.1,
+      "amountY":0.1
+    },
+    {
+      "x":64,
+      "y":64,
+      "amountX":0.1,
+      "amountY":0.1
+    },
+    {
+      "x":64,
+      "y":64,
+      "amountX":-0.1,
+      "amountY":-0.1
+    }
+  ]
+}

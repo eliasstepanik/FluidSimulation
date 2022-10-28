@@ -1,4 +1,5 @@
 using System.Numerics;
+using Newtonsoft.Json;
 using static Raylib_CsLo.Raylib;
 using static Raylib_CsLo.RayGui;
 using Raylib_CsLo;
@@ -7,8 +8,8 @@ namespace PixelEngine;
 
 public class Game
 {
-    private const int Size = 256;
-    private const int Scale = 2;
+    private const int Size = 128;
+    private const int Scale = 7;
     private const int Iter = 10;
     private const float Dt = 0.2f;
     private const float Diffusion = 0f;
@@ -27,12 +28,26 @@ public class Game
 
         InitWindow(Size * Scale, Size * Scale, WindowTitle);
         SetTargetFPS(TargetFps);
+        
     }
 
     public void HandleInput()
     {
         
+        var config = JsonConvert.DeserializeObject<Config>(File.ReadAllText("Config.json"));
         
+        foreach (var configVelocity in config.Velocities)
+        {
+            DrawCircle(configVelocity.x * Scale, configVelocity.y *Scale, 5, RED);
+            DrawLine(configVelocity.x * Scale,configVelocity.y *Scale, (int) ((configVelocity.x * Scale) + (configVelocity.amountX)),(int) ((configVelocity.y * Scale) + (configVelocity.amountY)), RED);
+            _fluid.addVelocity(configVelocity.x, configVelocity.y, configVelocity.amountX, configVelocity.amountY);
+        }
+        
+        foreach (var configDensity in config.Densities)
+        {
+            _fluid.addDensity(configDensity.x, configDensity.y, configDensity.amount);
+        }
+
         // Add Density
         if (IsMouseButtonDown(MouseButton.MOUSE_BUTTON_LEFT))
         {
@@ -61,7 +76,7 @@ public class Game
             PMouse = GetMousePosition();
         }
         
-
+        
         
 
     }

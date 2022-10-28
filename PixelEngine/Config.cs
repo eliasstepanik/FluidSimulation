@@ -2,6 +2,8 @@
 
 public class Config
 {
-    public List<Density> Densities { get; set; }
-    public List<Velocity> Velocities { get; set; }
+    public int Size { get; set; } = 128;
+    public int Scale { get; set; } = 7;
+    public string WindowTitle { get; set; } = "Fluid Simulation";
+    public int TargetFps { get; set; } = 60;
 }

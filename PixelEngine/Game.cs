@@ -7,8 +7,8 @@ namespace PixelEngine;
 
 public class Game
 {
-    private const int Size = 64;
-    private const int Scale = 10;
+    private const int Size = 256;
+    private const int Scale = 2;
     private const int Iter = 10;
     private const float Dt = 0.2f;
     private const float Diffusion = 0f;

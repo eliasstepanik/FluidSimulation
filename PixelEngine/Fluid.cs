@@ -1,5 +1,4 @@
 ﻿using System.Numerics;
-using Hybridizer.Runtime.CUDAImports;
 using Raylib_CsLo;
 using static Raylib_CsLo.RayMath;
 
@@ -61,9 +60,7 @@ public class Fluid
         diffuse(2, Vy0, Vy, visc, dt);
 
         project(Vx0, Vy0, Vx, Vy);
-        HybRunner runner = HybRunner.Cuda().SetDistrib(32, 32, 16, 16, 1, 0);
-        wrapper = runner.Wrap(new Game());
-        wrapper.Run(wrapper.advect(this,1, Vx, Vx0, Vx0, Vy0, dt));
+        advect(this, 1, Vx, Vx0, Vx0, Vy0, dt);
         advect(this,2, Vy, Vy0, Vx0, Vy0, dt);
 
         project(Vx, Vy, Vx0, Vy0);
@@ -192,9 +189,6 @@ public class Fluid
       set_bnd(2, velocY);
     }
     
-    
-
-    [EntryPoint("run")]
     public void advect(Fluid fluid,int b, float[] d, float[] d0, float[] velocX, float[] velocY, float dt) {
       float i0, i1, j0, j1;
 

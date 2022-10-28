@@ -15,6 +15,7 @@ game.PMouse = GetMousePosition();
 game.Start();
 
 
+
 while (!WindowShouldClose())
 {
     game.HandleInput();
